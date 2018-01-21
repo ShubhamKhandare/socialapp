@@ -98,8 +98,6 @@ Rails.application.configure do
     password:             'Sk@12596',
     authentication:       'plain',
     enable_starttls_auto: true  }
-
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.default_url_options = { host: 'socialapp.com' }
+    # config.action_mailer.default_url_options = { host: 'sheltered-garden-45153.herokuapp.com' }
 
 end
