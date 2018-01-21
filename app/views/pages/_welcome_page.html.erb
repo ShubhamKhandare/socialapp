@@ -1,0 +1,11 @@
+	<div class="center jumbotron">
+		<h1>Welcome to App</h1>
+		<h3> Sign up for the posts</h3>
+		<!-- <h2>
+			This is page for Ruby on Rails  tutorial Sample application
+		</h2> -->
+		<% if !user_signed_in?  %>
+		<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+		<% end %>
+	</div>
+	<%= link_to image_tag("rails.png", alt: "Rails logo"),'http://rubyonrails.org/' %>
