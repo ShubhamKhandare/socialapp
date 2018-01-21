@@ -3,9 +3,15 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users, :only => [:show, :index, :destroy]
+  resources :users, :only => [:show, :index, :destroy] do
+    member do
+      get :following, :followers
+    end
+  end
   
   resources :microposts,          only: [:create, :destroy]
+
+  resources :relationships,       only: [:create, :destroy]
 
   root to: 'pages#index'
 
@@ -16,6 +22,5 @@ Rails.application.routes.draw do
   get '/about',   to: 'pages#about'
 
   get '/contact', to: 'pages#contact'
-
 
 end
