@@ -1,4 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
+  # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
@@ -11,7 +11,9 @@ tmp = User.new(name:  "Example User",
              password_confirmation: "123456")
 	tmp.skip_confirmation!
 	tmp.skip_confirmation_notification!
-  	tmp.save!
+  tmp.save!
+
+
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
@@ -20,10 +22,11 @@ tmp = User.new(name:  "Example User",
                email: email,
                password:              password,
                password_confirmation: password)
-  	tmp.skip_confirmation!
+  tmp.skip_confirmation!
 	tmp.skip_confirmation_notification!
-  	tmp.save!
+  tmp.save!
 end
+
 users = User.order(:created_at).take(6)
 50.times do
   content = Faker::RickAndMorty.quote[0,139]

@@ -10,9 +10,8 @@ class MicropostsController < ApplicationController
 			redirect_to root_url
 		else
 			@feed_items = []
-			render 'pages/home'
+			render 'pages/index'
 		end
-
 	end
 
 	def destroy
@@ -23,11 +22,12 @@ class MicropostsController < ApplicationController
 
 	private
 	def micropost_params
-		params.require(:micropost).permit(:content)
+		params.require(:micropost).permit(:content, :picture)
 	end
 
 	def correct_user
 		@micropost = current_user.microposts.find_by(id: params[:id])
 		redirect_to root_url if @micropost.nil?
 	end
+
 end

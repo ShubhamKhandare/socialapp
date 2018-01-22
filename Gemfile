@@ -44,6 +44,10 @@ gem 'faker'
 gem 'devise'
 
 gem 'delayed_job_active_record'
+
+gem 'carrierwave'
+
+gem 'mini_magick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -54,6 +58,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'pry'
+  gem 'mailcatcher'
 end
 
 group :development do
@@ -69,6 +74,7 @@ end
 
 group :production do
   gem 'pg', '0.20.0'
+  gem 'fog'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
