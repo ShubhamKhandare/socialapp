@@ -13,6 +13,8 @@ class User < ApplicationRecord
   # def send_devise_notification(notification, *args)
   # 	devise_mailer.send(notification, self, *args).deliver_later
   # end
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "80x80>" }, default_url: "https://secure.gravatar.com/avatar/s=60/d=identicon"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def feed
 		# Micropost.where("user_id = ?", id)

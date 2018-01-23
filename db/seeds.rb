@@ -8,7 +8,8 @@
 tmp = User.new(name:  "Example User",
              email: "user@example.com",
              password:              "123456",
-             password_confirmation: "123456")
+             password_confirmation: "123456",
+             admin: true)
 	tmp.skip_confirmation!
 	tmp.skip_confirmation_notification!
   tmp.save!

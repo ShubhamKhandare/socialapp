@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :admin_user , only: [:destroy]
+
   def index
     @users = User.paginate(page: params[:page])
     # all
@@ -29,4 +32,10 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   
+  private
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
+
 end

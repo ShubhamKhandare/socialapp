@@ -48,6 +48,9 @@ gem 'delayed_job_active_record'
 gem 'carrierwave'
 
 gem 'mini_magick'
+
+gem 'paperclip'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -74,7 +77,7 @@ end
 
 group :production do
   gem 'pg', '0.20.0'
-  gem 'fog'
+  # gem 'fog'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
