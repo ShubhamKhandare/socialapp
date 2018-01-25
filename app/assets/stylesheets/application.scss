@@ -12,10 +12,13 @@
  *
  *= require_tree .
  *= require_self
+ *= require easy-autocomplete
+ *= require easy-autocomplete.themes
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap/theme';
+
 .alert-alert {
   @extend .alert-warning;
 }

@@ -9,7 +9,7 @@
 
 	<span class="picture">
 		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-    <img id="upload_image_preview" src="#" alt="you image" height="100" width="100" style="visibility: hidden;" />
+    <img id="upload_image_preview" src="#" alt="your image" width="auto" height="auto" style="visibility: hidden;" />
 	</span>
 <% end %>
 
@@ -47,6 +47,8 @@ function readURL(input) {
     var reader = new FileReader();
     reader.onload = function(e) {
       $('#upload_image_preview').css("visibility","visible");
+      $('#upload_image_preview').css("max-width","300px");
+      $('#upload_image_preview').css("max-height","300px");
       $('#upload_image_preview').attr('src', e.target.result);
     }
     reader.readAsDataURL(input.files[0]);

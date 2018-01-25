@@ -5,11 +5,12 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:show, :index, :destroy] do
     member do
-      get :following, :followers
+      get :following, :followers  
     end
+
   end
   
-  resources :microposts,          only: [:create, :destroy]
+  resources :microposts,          only: [:create, :destroy,:show]
 
   resources :relationships,       only: [:create, :destroy]
 
@@ -22,5 +23,12 @@ Rails.application.routes.draw do
   get '/about',   to: 'pages#about'
 
   get '/contact', to: 'pages#contact'
+
+  # post '/ajax_page', to: 'pages#test'
+
+  get :search, controller: :pages 
+  # get :autocomplete, controller: :pages
+
+
 
 end

@@ -6,6 +6,8 @@
 		</h2> -->
 		<% if !user_signed_in?  %>
 		<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+		<!-- <button id='ajax-btn' data-url='/ajax_page' class="btn btn-lg btn-primary">click</button> -->
+		<!-- <div id='message'></div> -->
 		<% end %>
 	</div>
 	<%= link_to image_tag("rails.png", alt: "Rails logo"),'http://rubyonrails.org/' %>

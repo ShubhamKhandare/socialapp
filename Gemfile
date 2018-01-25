@@ -51,6 +51,8 @@ gem 'mini_magick'
 
 gem 'paperclip'
 
+gem 'ransack'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
