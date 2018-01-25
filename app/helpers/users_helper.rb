@@ -4,6 +4,7 @@ module UsersHelper
 		gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
 		# <%= image_tag(current_user.avatar.url(:thumb)) %>
 		# image_tag(gravatar_url, alt: user.name, class: "gravatar")
+		
 		image_tag(user.avatar.url(:thumb), alt: user.name, class: "gravatar")
 	end
 	
