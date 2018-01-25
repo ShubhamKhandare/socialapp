@@ -11,42 +11,11 @@
 // about supported directives.
 //
 //= require_tree .
+//= require jquery
 //= require rails-ujs
 //= require turbolinks
-//= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap/dropdown
 //= require jquery.easy-autocomplete
-
-// $(document).ready(function(){
-// $('button').on("click",function (e) {
-// 	// body...
-// 	console.log('111')
-// 	e.preventDefault();
-// 	var url = $(this).data("url");
-// 	$('#message').html('loading')
-// 	$.ajax({
-// 		url: url,
-// 		method: 'post',
-// 		data: {
-// 			val: "test123"
-// 		},
-// 		success: function (response) {
-// 			// body...s
-// 			$('#message').html(response.html)
-// 		},
-// 		error: function (response) {
-// 			// body...
-// 			$('#message').html(response.html)
-// 			console.log('error');
-// 		},
-// 		complete: function (argument) {
-// 			// body...
-// $('#message').html('loaded')
-// 		}
-// 	}
-// 	)
-// })	
-// })
 
