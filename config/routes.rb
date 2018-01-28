@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :hearts, :only => [:heart,:unheart]
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :users
@@ -29,6 +30,9 @@ Rails.application.routes.draw do
   get :search, controller: :pages 
   # get :autocomplete, controller: :pages
 
+  match 'heart', to: 'hearts#heart', via: :post
+
+  match 'unheart', to: 'hearts#unheart', via: :post
 
 
 end

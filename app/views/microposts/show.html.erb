@@ -23,6 +23,9 @@
 			<% if current_user == @micropost.user %>
 			<%= link_to "Delete", @micropost, method: :delete, data: {confirm: "Are you sure?"} %>
 			<% end %>
+			<span id="btn-wrap-<%= @micropost.id %>">
+			<%= render partial: 'microposts/button', locals: { micropost: @micropost } %>
+		</span>
 		</span>
 
 		</div>

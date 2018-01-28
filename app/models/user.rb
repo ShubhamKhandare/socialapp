@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name:  "Relationship",foreign_key: "followed_id", dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+
+
+  has_many :hearts, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,8 +20,8 @@ class User < ApplicationRecord
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def feed
-		# Micropost.where("user_id = ?", id)
-    # Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
+		# Micromicropost.where("user_id = ?", id)
+    # Micromicropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
     following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"
     Micropost.where("user_id IN (#{following_ids})
@@ -38,4 +41,22 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+
+  # creates a new heart row with micropost_id and user_id
+  def heart!(micropost)
+    self.hearts.create!(micropost_id: micropost.id)
+  end
+
+  # destroys a heart with matching micropost_id and user_id
+  def unheart!(micropost)
+    heart = self.hearts.find_by_micropost_id(micropost.id)
+    heart.destroy!
+  end
+
+  # returns true of false if a micropost is hearted by user
+  def heart?(micropost)
+    !!self.hearts.find_by_micropost_id(micropost.id)
+  end
+
+
 end

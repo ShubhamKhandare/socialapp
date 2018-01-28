@@ -2,7 +2,7 @@ class MicropostsController < ApplicationController
 include Devise::Controllers::Helpers
 	# before_action :logged_in_user, only: [:create , :destroy]
 	before_action :correct_user,   only: :destroy
-	before_action :logged_in? , only: :show
+	before_action :logged_in? , only: [:show, :destroy]
 
 	def create
 		@micropost = current_user.microposts.build(micropost_params)

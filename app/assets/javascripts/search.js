@@ -8,8 +8,8 @@ document.addEventListener("turbolinks:load", function() {
 			},
 			categories: [
 				{
-					listlocations: "users",
-					header: "<strong>User</strong>"
+					// listlocations: "users",
+					// header: "<strong>User</strong>"
 				}
 			],
 			list: {
@@ -18,9 +18,12 @@ document.addEventListener("turbolinks:load", function() {
 					$input.val("")
 					Turbolinks.visit(url);
 				}
-			}
+			},
+			theme: "dark"
 
 	}
 	$input.easyAutocomplete(options);
+	// $("#easy-autocomplete-container li:first").addClass("selected");
 });
+
 

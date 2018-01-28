@@ -27,7 +27,10 @@ class PagesController < ApplicationController
 		@microposts = Micropost.ransack(content_cont: params[:q]).result(distinct: true)
 
 		respond_to do |format|
-			format.html {}
+			format.html {
+				redirect_to root_path
+				flash[:error] = "No results for provided search"
+			}
 			format.json {
 				@users = @users.limit(5)
 				@microposts = @microposts.limit(5)

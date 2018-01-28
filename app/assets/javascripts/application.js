@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+//= require rails-ujs
 //= require bootstrap
 //= require_tree .
-//= require rails-ujs
+
 //= require turbolinks
 //= require jquery.turbolinks
 //= require jquery.easy-autocomplete

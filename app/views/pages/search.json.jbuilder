@@ -7,7 +7,7 @@
 
 # json.microposts do
 	json.array!(@microposts) do |micropost|
-		json.name micropost.user_id
+		json.name micropost.content
 		json.url micropost_url(micropost)
 	end
 # end

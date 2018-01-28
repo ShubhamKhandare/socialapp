@@ -1,0 +1,5 @@
+<% if user_signed_in? && current_user.heart?(micropost) %>
+	<%= button_to "Unlike", unheart_path(micropost_id: micropost.id), remote: true, method: :post , id: "unheart_btn_#{micropost.id}"%>
+<% else %>
+	<%= button_to "Like", heart_path(micropost_id: micropost.id), remote: true, method: :post, id: "heart_btn_#{micropost.id}"  %>
+<% end %>
