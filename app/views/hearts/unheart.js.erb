@@ -1,2 +1,3 @@
-
 $('#btn-wrap-<%= @micropost.id%>').html('<%= j render partial: "microposts/button", locals: {micropost: @micropost} %>');
+$('#likes_count_<%= @micropost.id %>').html('<%= @micropost.hearts.count %> <%= "Like".pluralize(@micropost.hearts.count) %>')
+

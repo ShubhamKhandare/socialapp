@@ -6,7 +6,7 @@
 
 	<span class="timestamp">
 
-		<span id="likes_count_<%= micropost.id %>"><%= micropost.hearts.count %> <%= "Like".pluralize(2) %> </span>
+		<span id="likes_count_<%= micropost.id %>"><%= micropost.hearts.count %> <%= "Like".pluralize(micropost.hearts.count) %> </span>
 
 		| Posted <%= time_ago_in_words(micropost.created_at) %> ago.
 		<% if current_user == micropost.user %>
