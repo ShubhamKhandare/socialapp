@@ -23,6 +23,11 @@ include Devise::Controllers::Helpers
 
 	def show
 		@micropost = Micropost.find(params[:id])
+		likers_ids = []
+		@micropost.hearts.each do |heart|
+			likers_ids << heart.user_id
+		end
+		@likers = User.where(id: likers_ids).paginate(page: params[:page])
 	end
 
 	private

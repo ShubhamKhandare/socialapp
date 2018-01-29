@@ -194,11 +194,13 @@ input{
 
 /*microposts*/
 .microposts{
-  list-style: none;
+  list-style-type: none;
   padding: 0;
   li{
+    overflow: auto;
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+    list-style-type: none;
   }
  .user{
     margin-top: 5px;
@@ -287,8 +289,25 @@ input.searcher{
 }
 
 .button_to{
+  display: inline-block;
+}
+
+.inline-li{
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+    list-style-type: none;
+    img{
+      display: block;
+    }
+    .follow_form{
+      display: inline-block;
+    }
+
+}
+
+.follow_form{
   input{
     width: auto;
-    display: inline-block;
   }
 }

@@ -1,5 +1,5 @@
 class HeartsController < ApplicationController
-	
+
 	respond_to :js
 
 	def heart

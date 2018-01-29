@@ -12,7 +12,8 @@
 	</aside>
 
 	<div class="col-md-8">
-		<%= render 'follow_form' if user_signed_in? %>
+		<%= render partial: 'follow_form',  locals: {user: @user}  if user_signed_in? %>
+
 		<% if @user.microposts.any? %>
 			<h3> Microposts (<%= @user.microposts.count %>) </h3>
 			<ol class="microposts">

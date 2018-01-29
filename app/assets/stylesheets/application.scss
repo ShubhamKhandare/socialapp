@@ -14,10 +14,13 @@
  *= require_self
  *= require easy-autocomplete
  *= require easy-autocomplete.themes
+ *= require font-awesome
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap/theme';
+@import "font-awesome";
+
 
 .alert-alert {
   @extend .alert-warning;

@@ -43,7 +43,7 @@ gem 'faker'
 
 gem 'devise'
 
-gem 'delayed_job_active_record'
+# gem 'delayed_job_active_record'
 
 gem 'carrierwave'
 
@@ -52,6 +52,8 @@ gem 'mini_magick'
 gem 'paperclip'
 
 gem 'ransack'
+
+gem "font-awesome-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -62,12 +64,14 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'pry'
+  gem 'pry-rails'
   gem 'mailcatcher'
+  gem 'pry-nav'
+  gem 'sqlite3'
 end
 
 group :development do
-  gem 'sqlite3'
+  
 # Use Puma as the app server
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
