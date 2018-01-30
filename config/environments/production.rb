@@ -98,6 +98,6 @@ Rails.application.configure do
     password:             'Sk@12596',
     authentication:       'plain',
     enable_starttls_auto: true  }
-    config.action_mailer.default_url_options = { host: 'social-app-sk.herokuapp.com' }
+    config.action_mailer.default_url_options = { host: 'purecove.herokuapp.com' }
 
 end
