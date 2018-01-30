@@ -6,6 +6,6 @@
 			| <%= link_to "Delete", user, method: :delete,data: {confirm: "You sure?"} %>
 			<% end %>
 			
-			<%= render partial: 'follow_form',  locals: {user: user}  if user_signed_in? %>	
+			<%= render partial: 'users/follow_form',  locals: {user: user}  if user_signed_in? %>	
 		<% end %>
 </li>

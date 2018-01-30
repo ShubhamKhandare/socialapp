@@ -4,22 +4,25 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-            <li style="margin: 7px;">
-            <%= form_with url: search_path, method: :get,local: true do |f| %>
-
-            <%= f.text_field :q, placeholder: "Search", data:  {behavior: "autocomplete"} , class: "form-control searcher" %>
-            <!-- <li> <input id="searcher" class="form-control" style="margin: 5px;" type="text" data-behavior="autocomplete" placeholder="Search.."> </li>
- -->
+                <li style="margin: 7px;">
+                  <%= form_with url: search_path, method: :get,local: true do |f| %>
+                  <%= f.text_field :q, placeholder: "Search", data:  {behavior: "autocomplete"} , class: "form-control searcher" %>
+                  <!-- <li> <input id="searcher" class="form-control" style="margin: 5px;" type="text" data-behavior="autocomplete" placeholder="Search.."> </li>
+       -->      
+                  <% end %>  
+                </li>
+              
             <% end %>
-            <% end %>
-            </li>
+            
             <li> <%= link_to "Home" , root_path %> </li>
             
             <% if user_signed_in? %>
               <li> <%= link_to "Users" , users_path  %> </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <%= current_user.name %><b class="caret"></b>
+                  <%= content_tag(:i, fa_icon('user-circle')) %>
+                  <%= current_user.name %>
+                  <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                   <li> <%= link_to "Profile" , current_user %> </li>
