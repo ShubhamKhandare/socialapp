@@ -8,10 +8,9 @@ Rails.application.routes.draw do
     member do
       get :following, :followers  
     end
-
   end
   
-  resources :microposts,          only: [:create, :destroy,:show]
+  resources :microposts,          only: [:create, :destroy,:show, :index]
 
   resources :relationships,       only: [:create, :destroy]
 

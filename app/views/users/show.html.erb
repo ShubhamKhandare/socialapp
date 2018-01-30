@@ -7,10 +7,17 @@
 				<%= @user.name %>
 			</h1>
 		</section>
+
 		<section class="stats">
       		 <%= render 'shared/stats' %>
     	</section>
+		<% if user_signed_in? %>
+		    	<section class="micropost_form">
+						<%= render 'shared/micropost_form' %>
+				</section>
+		<% end %>
 	</aside>
+
 
 	<div class="col-md-8">
 		<%= render partial: 'follow_form',  locals: {user: @user}  if user_signed_in? %>

@@ -15,11 +15,14 @@
 
 	<div class="col-md-8">
 		<%= render partial: 'microposts/micropost', locals: {micropost: @micropost} %>
-		<% if !((@likers.count <= 1) && (@likers.first == current_user)) %>
-			<h3>Likes from:</h3>
-			<%= render @likers %>
-			<%= will_paginate @likers %>
+		<% if @likers.count != 0 %>
+			<% if !((@likers.count <= 1) && (@likers.first == current_user)) %>
+				<h3>Likes from:</h3>
+				<%= render @likers %>
+				<%= will_paginate @likers %>
+			<% end %>
 		<% end %>
+
 	</div>
 
 </div>

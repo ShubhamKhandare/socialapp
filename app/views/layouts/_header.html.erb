@@ -6,7 +6,7 @@
             <% if user_signed_in? %>
                 <li style="margin: 7px;">
                   <%= form_with url: search_path, method: :get,local: true do |f| %>
-                  <%= f.text_field :q, placeholder: "Search", data:  {behavior: "autocomplete"} , class: "form-control searcher" %>
+                  <%= f.text_field :q, placeholder: "Search", data:  {behavior: "autocomplete"} , class: "form-control", id: "searcher" %>
                   <!-- <li> <input id="searcher" class="form-control" style="margin: 5px;" type="text" data-behavior="autocomplete" placeholder="Search.."> </li>
        -->      
                   <% end %>  
@@ -19,8 +19,12 @@
             <% if user_signed_in? %>
               <li> <%= link_to "Users" , users_path  %> </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <%= content_tag(:i, fa_icon('user-circle')) %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >  
+                  <% if current_user.admin? %>
+                    <%= content_tag(:i, fa_icon('user-secret lg'),title: "Admin") %>
+                  <% else %>
+                    <%= content_tag(:i, fa_icon('user-circle lg')) %>
+                  <% end %>
                   <%= current_user.name %>
                   <b class="caret"></b>
                 </a>

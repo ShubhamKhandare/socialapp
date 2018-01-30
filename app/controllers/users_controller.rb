@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    if user_signed_in?
+      @micropost = current_user.microposts.build 
+    end
   end
 
   def destroy

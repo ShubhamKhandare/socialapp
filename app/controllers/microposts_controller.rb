@@ -4,6 +4,13 @@ include Devise::Controllers::Helpers
 	before_action :correct_user,   only: :destroy
 	before_action :logged_in? , only: [:show, :destroy]
 
+	def index
+		if user_signed_in?
+			@micropost = @micropost = current_user.microposts.build	
+		end
+		@feed_items = Micropost.all.paginate(page: params[:page])
+	end
+
 	def create
 		@micropost = current_user.microposts.build(micropost_params)
 		if @micropost.save
