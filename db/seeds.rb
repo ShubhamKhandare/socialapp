@@ -14,6 +14,63 @@ tmp = User.new(name:  "Example User",
 	tmp.skip_confirmation_notification!
   tmp.save!
 
+tmp = User.new(name:  "Chetan Sawai",
+             email: "csawai@example.com",
+             password:              "123456",
+             password_confirmation: "123456"
+              )
+  tmp.skip_confirmation!
+  tmp.skip_confirmation_notification!
+  tmp.save!
+
+tmp = User.new(name:  "Manish Nikam",
+             email: "mnikam@example.com",
+             password:              "123456",
+             password_confirmation: "123456")
+  tmp.skip_confirmation!
+  tmp.skip_confirmation_notification!
+  tmp.save!
+  
+  tmp = User.new(name:  "muktesh deshpande",
+             email: "muktesh@example.com",
+             password:              "123456",
+             password_confirmation: "123456")
+  tmp.skip_confirmation!
+  tmp.skip_confirmation_notification!
+  tmp.save!
+
+  tmp = User.new(name:  "Radhe Nazarkar",
+             email: "radhenazarkar@example.com",
+             password:              "123456",
+             password_confirmation: "123456")
+  tmp.skip_confirmation!
+  tmp.skip_confirmation_notification!
+  tmp.save!
+
+  tmp = User.new(name:  "Rupali Jaiprakash Rode",
+             email: "Rupali@example.com",
+             password:              "123456",
+             password_confirmation: "123456")
+  tmp.skip_confirmation!
+  tmp.skip_confirmation_notification!
+  tmp.save!
+
+  tmp = User.new(name:  "Sonali Sorte",
+             email: "ssorte@example.com",
+             password:              "123456",
+             password_confirmation: "123456")
+  tmp.skip_confirmation!
+  tmp.skip_confirmation_notification!
+  tmp.save!
+
+    tmp = User.new(name:  "Swapnil Gourshete",
+             email: "swapnil@example.com",
+             password:              "123456",
+             password_confirmation: "123456")
+  tmp.skip_confirmation!
+  tmp.skip_confirmation_notification!
+  tmp.save!
+
 
 99.times do |n|
   name  = Faker::Name.name
@@ -41,3 +98,11 @@ end
  #  )
  #  user.skip_confirmation!
  #  user.save!
+
+ # Following relationships
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
