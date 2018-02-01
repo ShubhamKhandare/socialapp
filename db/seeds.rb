@@ -71,6 +71,16 @@ tmp = User.new(name:  "Manish Nikam",
   tmp.skip_confirmation_notification!
   tmp.save!
 
+  tmp = User.new(name:  "Omkar Nazarkar",
+             email: "omkar@example.com",
+             password:              "123456",
+             password_confirmation: "123456"
+              )
+  tmp.skip_confirmation!
+  tmp.skip_confirmation_notification!
+  tmp.save!
+
+
 
 99.times do |n|
   name  = Faker::Name.name
@@ -86,8 +96,13 @@ tmp = User.new(name:  "Manish Nikam",
 end
 
 users = User.order(:created_at).take(6)
-50.times do
+26.times do
   content = Faker::RickAndMorty.quote[0,139]
+  users.each{ |user| user.microposts.create!(content: content)}
+end
+users = User.order(:created_at).take(6)
+32.times do
+  content = Faker::SiliconValley.quote[0,139]
   users.each{ |user| user.microposts.create!(content: content)}
 end
 
@@ -101,8 +116,10 @@ end
 
  # Following relationships
 users = User.all
-user  = users.first
-following = users[2..50]
-followers = users[3..40]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
+[1..7].each do |num|
+  user  = users.find(num)
+  following = users[2..50]
+  followers = users[3..40]
+  following.each { |followed| user.follow(followed) }
+  followers.each { |follower| follower.follow(user) }
+end
