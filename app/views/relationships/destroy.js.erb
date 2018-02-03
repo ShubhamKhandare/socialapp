@@ -1,2 +1,5 @@
 $("#follow_form_<%= @user.id %>").html("<%= j render partial: 'users/follow' ,locals: {user: @user} %>");
+
 $("#followers").html('<%= @user.followers.count %>');
+
+// $("#following").html('<%= @user.following.count %>');
