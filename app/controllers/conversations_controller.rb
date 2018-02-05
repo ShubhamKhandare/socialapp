@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+	before_action :logged_in?
 	def create
 		@conversation = Conversation.get(current_user.id, params[:user_id])
 		add_to_conversations unless conversated?

@@ -1,5 +1,5 @@
 class HeartsController < ApplicationController
-
+	before_action :logged_in?
 	respond_to :js
 
 	def heart

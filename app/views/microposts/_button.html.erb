@@ -4,4 +4,5 @@
 	<% else %>
 		<%= button_to "Like", heart_path(micropost_id: micropost.id), remote: true, method: :post, id: "heart_btn_#{micropost.id}"  %>
 	<% end %>
+
 <% end %>

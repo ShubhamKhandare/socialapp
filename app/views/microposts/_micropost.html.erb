@@ -8,7 +8,7 @@
 		<span id="btn-wrap-<%= micropost.id %>">
 			<%= render partial: 'microposts/button', locals: { micropost: micropost } %>
 		</span>
-
+		
 		<span style="float: right;">
 			<span id="likes_count_<%= micropost.id %>"><%= micropost.hearts.count %> <%= "Like".pluralize(micropost.hearts.count) %> </span>
 
@@ -17,6 +17,20 @@
 			<%= link_to "Delete", micropost, method: :delete, data: {confirm: "Are you sure?"} %>
 			<% end %>
 		</span>
+		<br>	
+
+		<div style=" float: right;">
+			<iframe
+			  src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=<%= micropost_url(micropost) %>&via=<%= micropost.user.name %>&related=twitterapi%2Ctwitter&text= <%= micropost.content %>&hashtags=socialapp"
+			  width="140"
+			  height="40"
+			  title="Twitter Tweet Button"
+			  style="border: 0; overflow: hidden; margin: 5px">Tweet This
+			</iframe>
+			<iframe
+			src="https://www.facebook.com/plugins/share_button.php?href=<%= micropost_url(micropost)%>&layout=button&size=large&mobile_iframe=false&width=73&height=28&appId" width="140" height="40" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true">
+			</iframe>
+		</div>
 	</span>
 
 	
