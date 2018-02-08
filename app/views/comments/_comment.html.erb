@@ -1,0 +1,36 @@
+<li class="comment-partial" style="padding-left: 10px;"> 
+	<strong > <%= comment.user.name %> </strong>
+	
+<!-- 	<% if comment.commentable_type == "Comment" %>	
+		<span>Reply to <%= User.find(Comment.find(comment.commentable_id).user_id).name %></span>
+	<% end %> -->
+	
+	<span style="float: right"><%= time_ago_in_words(comment.created_at) %> ago </span>
+	<br>
+	<div> <%= comment.body %> </div>
+	<a class="reply-button">Reply</a>
+	<% if comment.commentable_type == "Micropost" %>
+		<div class="reply-form" style="display: none">
+			<%= form_for [comment, Comment.new] do |f| %>
+				<%= f.text_area :body %>
+				<%= f.submit "Save Reply" %>
+			<% end 	%>
+		</div>
+	<% elsif comment.commentable_type == "Comment" %>
+		<div class="reply-form" style="display: none">
+			<%= form_for [Comment.find(comment.commentable_id), Comment.new] do |f| %>
+				<%= f.text_area :body %>
+				<%= f.submit "Save Reply" %>
+			<% end 	%>
+		</div>
+	<% end %>
+	<% if current_user == comment.user %>
+			<%= link_to "Delete", comment, method: :delete, data: {confirm: "Are you sure?"} %>
+	<% end %>
+	<% if comment.comments.any? %>
+		<button class="show-replies">Show replies</button>
+	<% end %>
+
+	<ul style="display: none; padding-left: 20px" id="comments-ul"><%= render partial: 'comments/comment', collection: comment.comments %></ul>
+</li>
+

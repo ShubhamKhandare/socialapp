@@ -12,7 +12,14 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :microposts,          only: [:create, :destroy,:show, :index]
+  resources :microposts,          only: [:create, :destroy,:show, :index] do
+    resources :comments
+  end
+
+  resources :comments do
+    resources  :comments
+    # resources :replies, path: :comments, as: :comments
+  end
 
   resources :relationships,       only: [:create, :destroy]
 

@@ -1,6 +1,7 @@
 // Place all the styles related to the message controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 ul {
   padding-left: 0px;
   list-style: none;
@@ -20,6 +21,7 @@ ul {
   margin: 5px 20px;
   padding: 10px;
   float: right;
+  border-radius: 20%;
 }
 
 
@@ -29,4 +31,8 @@ ul {
   margin: 5px 20px;
   padding: 10px;
   float: left;
+  border-radius: 20%;
+}
+.btn-success{
+  
 }

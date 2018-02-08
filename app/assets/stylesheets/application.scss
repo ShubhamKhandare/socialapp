@@ -29,3 +29,10 @@
 .alert-notice {
   @extend .alert-info;
 }
+body{
+	word-wrap: break-word
+}
+footer{
+    height: 60px;
+    bottom: 0;
+}

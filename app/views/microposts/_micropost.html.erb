@@ -1,4 +1,5 @@
-<li id="micropost-<%= micropost.id %>" class="inline-li  microposts">
+
+<li id="micropost-<%= micropost.id %>" class="inline-li  microposts micropost-li">
 	<%= link_to gravatar_for(micropost.user,size: 50), micropost.user %>
 	<span class="user"> <%= link_to micropost.user.name, micropost.user %> </span>
 	<p class="content"> <%= micropost.content %> </p>
@@ -19,7 +20,7 @@
 		</span>
 		<br>	
 
-		<div style=" float: right;">
+		<div style="float: right;">
 			<iframe
 			  src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=<%= micropost_url(micropost) %>&via=<%= micropost.user.name %>&related=twitterapi%2Ctwitter&text= <%= micropost.content %>&hashtags=socialapp"
 			  width="140"
@@ -32,6 +33,14 @@
 			</iframe>
 		</div>
 	</span>
-
-	
+<h3>Comments</h3>
+<ul class="nested-comments"><%= render partial: 'comments/comment', collection: micropost.comments %></ul>
+<% 	if user_signed_in?	 %>
+	<%= form_for [micropost, Comment.new ] do |form| %>
+		<%= form.text_area :body, rows: 1%>
+		<%= form.submit "Save comment" %>
+	<% end %>
+<% else %>
+	You need to <%= link_to "log in", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> to comment.
+<% end %>
 </li>
