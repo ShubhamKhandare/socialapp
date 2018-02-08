@@ -17,6 +17,7 @@
 			<% end 	%>
 		</div>
 	<% elsif comment.commentable_type == "Comment" %>
+		
 		<div class="reply-form" style="display: none">
 			<%= form_for [Comment.find(comment.commentable_id), Comment.new] do |f| %>
 				<%= f.text_area :body %>

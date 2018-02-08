@@ -29,6 +29,11 @@ include Devise::Controllers::Helpers
 	end
 
 	def show
+		if Micropost.where(id: params[:id]).empty?
+			redirect_to root_url and return
+			binding.pry
+		end
+
 		@micropost = Micropost.find(params[:id])
 		likers_ids = []
 		@micropost.hearts.each do |heart|

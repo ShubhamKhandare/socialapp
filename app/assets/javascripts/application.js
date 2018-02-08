@@ -44,3 +44,10 @@ $(document).on('turbolinks:load', function() {
   });
 
 });
+
+
+$(document).ready(function(){
+  $(".show-replies").click(function(){
+    $(this).text($(this).text() == "Hide replies" ? "Show replies" : "Hide replies");
+        $(this).next("#comments-ul").toggle();
+    });});

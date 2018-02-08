@@ -2,38 +2,41 @@
 <li id="micropost-<%= micropost.id %>" class="inline-li  microposts micropost-li">
 	<%= link_to gravatar_for(micropost.user,size: 50), micropost.user %>
 	<span class="user"> <%= link_to micropost.user.name, micropost.user %> </span>
+	<% unless controller_name + "#" + action_name == "microposts#show" %>
+		<span style="float: right;"><a href="<%= micropost_url(micropost) %>"><%= content_tag(:i, fa_icon('share-square lg')) %></a></span>
+	<% end %>
+
 	<p class="content"> <%= micropost.content %> </p>
 	<%= image_tag micropost.picture.url if micropost.picture? %>
 
-	<span class="timestamp">
+	<div class="timestamp">
 		<span id="btn-wrap-<%= micropost.id %>">
 			<%= render partial: 'microposts/button', locals: { micropost: micropost } %>
 		</span>
 		
 		<span style="float: right;">
+			<a href="<%= micropost_url(micropost) %>"><span id="likes_count_<%= micropost.id %>"><%= micropost.hearts.count %> <%= "Like".pluralize(micropost.hearts.count) %> </span> </a>
 
-		<a href="<%= micropost_url(micropost) %>"><span id="likes_count_<%= micropost.id %>"><%= micropost.hearts.count %> <%= "Like".pluralize(micropost.hearts.count) %> </span> </a>
-
-			| Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-			<% if current_user == micropost.user %>
-			<%= link_to "Delete", micropost, method: :delete, data: {confirm: "Are you sure?"} %>
-			<% end %>
+				| Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+				<% if current_user == micropost.user %>
+				<%= link_to "Delete", micropost, method: :delete, data: {confirm: "Are you sure?"} %>
+				<% end %>
 		</span>
-		<br>	
-
-		<div style="float: right;">
-			<iframe
-			  src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=<%= micropost_url(micropost) %>&via=<%= micropost.user.name %>&related=twitterapi%2Ctwitter&text= <%= micropost.content %>&hashtags=socialapp"
-			  width="140"
-			  height="40"
-			  title="Twitter Tweet Button"
-			  style="border: 0; overflow: hidden; margin: 5px">Tweet This
-			</iframe>
-			<iframe
-			src="https://www.facebook.com/plugins/share_button.php?href=<%= micropost_url(micropost)%>&layout=button&size=large&mobile_iframe=false&width=73&height=28&appId" width="140" height="40" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true">
-			</iframe>
-		</div>
-	</span>
+		<% if controller_name + "#" + action_name == "microposts#show" %>
+			<div style="float: right;">
+				<iframe
+				  src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=<%= micropost_url(micropost) %>&via=<%= micropost.user.name %>&related=twitterapi%2Ctwitter&text= <%= micropost.content %>&hashtags=socialapp"
+				  width="140"
+				  height="40"
+				  title="Twitter Tweet Button"
+				  style="border: 0; overflow: hidden; margin: 5px">Tweet This
+				</iframe>
+				<iframe
+				src="https://www.facebook.com/plugins/share_button.php?href=<%= micropost_url(micropost)%>&layout=button&size=large&mobile_iframe=false&width=73&height=28&appId" width="140" height="40" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true">
+				</iframe>
+			</div>
+		<% end %>
+	</div>
 <h3> <a href="<%= micropost_url(micropost) %>">Comments</a> </h3>
 <ul class="nested-comments"><%= render partial: 'comments/comment', collection: micropost.comments %></ul>
 <% 	if user_signed_in?	 %>
