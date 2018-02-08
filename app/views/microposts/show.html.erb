@@ -13,12 +13,11 @@
     	</section>
     	<section>
     		<% if @likers.count != 0 %>
-			<% if !((@likers.count <= 1) && (@likers.first == current_user)) %>
-
+    		
 				<h3><%= "Like".pluralize(@likers.count) %> from:</h3>
 				<%= render @likers %>
 				<%= will_paginate @likers %>
-			<% end %>
+			
 		<% end %>
     	</section>
 		</div>

@@ -11,7 +11,8 @@
 		</span>
 		
 		<span style="float: right;">
-			<span id="likes_count_<%= micropost.id %>"><%= micropost.hearts.count %> <%= "Like".pluralize(micropost.hearts.count) %> </span>
+
+		<a href="<%= micropost_url(micropost) %>"><span id="likes_count_<%= micropost.id %>"><%= micropost.hearts.count %> <%= "Like".pluralize(micropost.hearts.count) %> </span> </a>
 
 			| Posted <%= time_ago_in_words(micropost.created_at) %> ago.
 			<% if current_user == micropost.user %>
@@ -33,7 +34,7 @@
 			</iframe>
 		</div>
 	</span>
-<h3>Comments</h3>
+<h3> <a href="<%= micropost_url(micropost) %>">Comments</a> </h3>
 <ul class="nested-comments"><%= render partial: 'comments/comment', collection: micropost.comments %></ul>
 <% 	if user_signed_in?	 %>
 	<%= form_for [micropost, Comment.new ] do |form| %>
