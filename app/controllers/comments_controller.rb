@@ -5,24 +5,30 @@ class CommentsController < ApplicationController
 	before_action :correct_user , only: [ :destroy]
 	
 	def create
+
 		@comment = @commentable.comments.new comment_params
-		if @comment.save
-			redirect_back fallback_location: root_path, notice: "Comment Posted successfully"
-		else
-			redirect_back fallback_location: root_path, notice: "Something went wrong"
+		@comment.save
+		respond_to  do |f|
+		    f.html { redirect_back fallback_location: root_path, notice: "Something went wrong" }
+		    f.js
 		end
+		# if @comment.save
+		# 	redirect_back fallback_location: root_path, notice: "Comment Posted successfully"
+		# else
+		# 	redirect_back fallback_location: root_path, notice: "Something went wrong"
+		# end
 	end
 
 	def destroy
 		@comment .destroy
-		flash[:success] = "Comment deleted"
-		redirect_back(fallback_location: root_url)
+		# flash[:success] = "Comment deleted"
+		# redirect_back(fallback_location: root_url)
 	end
 
 private
 	def comment_params
 		params[:comment][:user_id] = current_user.id
-		params.require(:comment).permit(:body, :user_id)
+		params.require(:comment).permit(:body, :user_id, :parent_id)
 	end
 	def find_commentable
 		@commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]

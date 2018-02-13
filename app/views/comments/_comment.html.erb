@@ -1,4 +1,4 @@
-<li class="comment-partial" style="padding-left: 10px;"> 
+<li class="comment-partial" id="comment<%= comment.id %>" style="padding-left: 10px;">
 	<strong > <%= comment.user.name %> </strong>
 	
 <!-- 	<% if comment.commentable_type == "Comment" %>	
@@ -11,27 +11,30 @@
 	<a class="reply-button">Reply</a>
 	<% if comment.commentable_type == "Micropost" %>
 		<div class="reply-form" style="display: none">
-			<%= form_for [comment, Comment.new] do |f| %>
+			<%= form_for [comment, Comment.new],remote: true do |f| %>
 				<%= f.text_area :body %>
-				<%= f.submit "Save Reply" %>
+				<%= f.hidden_field :parent_id, value: comment.parent_id %>
+				<%= f.submit "Save Comment", data: { "disable-with": "Saving..." } %>
 			<% end 	%>
 		</div>
 	<% elsif comment.commentable_type == "Comment" %>
-		
 		<div class="reply-form" style="display: none">
-			<%= form_for [Comment.find(comment.commentable_id), Comment.new] do |f| %>
+			
+			<% comment_nest =  Comment.find(comment.commentable_id) %>
+			<%= form_for [comment_nest, Comment.new], remote: true do |f| %>
 				<%= f.text_area :body %>
-				<%= f.submit "Save Reply" %>
+				<%= f.hidden_field :parent_id, value: comment_nest.parent_id %>
+				<%= f.submit "Save Reply", data: {"disable-with": "Replying..."} %>
 			<% end 	%>
 		</div>
 	<% end %>
 	<% if current_user == comment.user %>
-			<%= link_to "Delete", comment, method: :delete, data: {confirm: "Are you sure?"} %>
+			<%= link_to "Delete", comment,remote: true, method: :delete, data: {confirm: "Delete your comment?"} %>
 	<% end %>
 	<% if comment.comments.any? %>
 		<button class="show-replies">Show replies</button>
 	<% end %>
 
-	<ul style="display: none; padding-left: 20px" id="comments-ul"><%= render partial: 'comments/comment', collection: comment.comments %></ul>
+	<ul style="padding-left: 20px" class="comments-ul" id="com<%= comment.id %>reply"><%= render partial: 'comments/comment', collection: comment.comments %></ul>
 </li>
 

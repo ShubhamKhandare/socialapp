@@ -37,17 +37,72 @@
 
 
 $(document).on('turbolinks:load', function() {
-  $('.reply-form').hide();
-  $('.reply-button').on('click', function(e){
-    e.preventDefault();
-    $(this).next('.reply-form').toggle(); // Show form on button click
-  });
 
+    setTimeout(function(){
+        if ($('.alert').length > 0) {
+          $('.alert').remove();
+        }
+    },10000)
+
+    $('.reply-form').hide();
+    $('.reply-button').on('click', function(e){
+      e.preventDefault();
+      $(this).next('.reply-form').toggle(); // Show form on button click
+    });
+
+    $(".comments-ul").hide();
+    $(".show-replies").click(function(){
+      $(this).text($(this).text() == "Hide replies" ? "Show replies" : "Hide replies");
+      $(this).next(".comments-ul").toggle();
+    });
 });
 
+function dynamic_load(ele) {
+//   // body...
+//     $('.reply-button').
+//     $(".show-replies")
+       if ($(ele)){
+          $(ele).find('.show-replies').click(function(){
+            $(this).text($(this).text() == "Hide replies" ? "Show replies" : "Hide replies");
+            $(this).next(".comments-ul").toggle();
+          });
 
-$(document).ready(function(){
-  $(".show-replies").click(function(){
-    $(this).text($(this).text() == "Hide replies" ? "Show replies" : "Hide replies");
-        $(this).next("#comments-ul").toggle();
-    });});
+          // $(ele).find('.reply-form').hide();
+          $(ele).find('.reply-button').on('click', function(e){
+            e.preventDefault();
+            $(this).next('.reply-form').toggle(); // Show form on button click
+          });
+        }
+        else{
+          $('.reply-form').hide();
+          $('.reply-button').off( "click");
+          $(".show-replies").off("click");
+          
+          $('.reply-button').on('click', function(e){
+            e.preventDefault();
+            $(this).next('.reply-form').toggle(); // Show form on button click
+          });
+
+          $(".show-replies").click(function(){
+            $(this).text($(this).text() == "Hide replies" ? "Show replies" : "Hide replies");
+            $(this).next(".comments-ul").toggle();
+          });
+        }
+
+//     
+
+
+//     console.log("dynamic loaded")
+//     $('.reply-form').hide();
+//     $('.reply-button').on('click', function(e){
+//       e.preventDefault();
+//       $(this).next('.reply-form').toggle(); // Show form on button click
+//     });
+
+//     $(".show-replies").click(function(){
+//       console.log('hi');
+//       $(this).text($(this).text() == "Hide replies" ? "Show replies" : "Hide replies");
+//       $(this).next(".comments-ul").toggle();
+//     });
+
+}

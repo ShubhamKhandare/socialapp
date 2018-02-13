@@ -38,11 +38,12 @@
 		<% end %>
 	</div>
 <h3> <a href="<%= micropost_url(micropost) %>">Comments</a> </h3>
-<ul class="nested-comments"><%= render partial: 'comments/comment', collection: micropost.comments %></ul>
+<ul class="nested-comments" id="mp<%= micropost.id%>com"><%= render partial: 'comments/comment', collection: micropost.comments %></ul>
 <% 	if user_signed_in?	 %>
-	<%= form_for [micropost, Comment.new ] do |form| %>
+	<%= form_for [micropost, Comment.new ],remote:true do |form| %>
 		<%= form.text_area :body, rows: 1%>
-		<%= form.submit "Save comment" %>
+		<%= form.hidden_field :parent_id, value: micropost.id %>
+		<%= form.submit "Save comment", data: { "disable-with": "Saving..." } %>
 	<% end %>
 <% else %>
 	You need to <%= link_to "log in", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> to comment.

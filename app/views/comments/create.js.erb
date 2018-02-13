@@ -1,0 +1,3 @@
+<% micropost = Micropost.find(@comment.parent_id) %>
+$("#mp<%= @comment.parent_id%>com").html("<%= escape_javascript( render( partial: 'comments/comment', collection: micropost.comments)).html_safe %>");
+dynamic_load($("#mp<%= micropost.id%>com"))

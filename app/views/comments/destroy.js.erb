@@ -1,0 +1,11 @@
+$("#comment<%= @comment.id%>").remove();
+<% if @comment.commentable_type == "Micropost" %>
+	<%	micropost = Micropost.find(@comment.commentable.id) %>
+	$("#mp<%= micropost.id%>com").html("<%= escape_javascript( render( partial: 'comments/comment', collection: micropost.comments)).html_safe %>");
+	dynamic_load($("#mp<%= micropost.id%>com"))
+<% else %>
+	<% comment = Comment.find(@comment.commentable.id) %>
+	$("#com<%= comment.id %>reply").html("<%= escape_javascript( render( partial: 'comments/comment', collection: comment.comments)).html_safe %>");
+	dynamic_load($("#com<%= comment.id %>reply"))
+<% end %>
+
