@@ -94,8 +94,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'socialapp.com',
-    user_name:            'shubhamkhandare12',
-    password:             'Sk@12596',
+    user_name:            '<username>',
+    password:             '<password>',
     authentication:       'plain',
     enable_starttls_auto: true  }
     config.action_mailer.default_url_options = { host: 'purecove.herokuapp.com' }
